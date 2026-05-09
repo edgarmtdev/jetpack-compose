@@ -20,7 +20,12 @@ fun Modifier.FoodScreen(
         modifier = this
     ) {
         items(uiState.foods) { food ->
-            FoodCard(food)
+            FoodCard(
+                food,
+                liked = food.liked,
+                onLikeClicked = { viewModel.toggleLike(food.id)
+                }
+            )
         }
     }
 }
