@@ -10,9 +10,9 @@ class FoodViewModel : ViewModel() {
     private val _uiState = MutableStateFlow(
         FoodUIState(
             foods = listOf(
-                Food(1, "Pizza", 120, "", false),
-                Food(2, "Tacos", 10, "", false),
-                Food(3, "Hamburger", 130, "", false)
+                Food(1, "Pizza", 1, "", false),
+                Food(2, "Tacos", 1, "", false),
+                Food(3, "Hamburger", 1, "", false)
             )
         )
     )
@@ -36,8 +36,9 @@ class FoodViewModel : ViewModel() {
                 }
             }
             currentState.copy(
-                foods = updatedFoods
+                foods = updatedFoods.sortedByDescending { it.numberOfLikes }
             )
         }
+
     }
 }

@@ -23,7 +23,8 @@ fun Modifier.FoodScreen(
             FoodCard(
                 food,
                 liked = food.liked,
-                onLikeClicked = { viewModel.toggleLike(food.id)
+                onLikeClicked = {
+                    viewModel.toggleLike(food.id)
                 }
             )
         }
