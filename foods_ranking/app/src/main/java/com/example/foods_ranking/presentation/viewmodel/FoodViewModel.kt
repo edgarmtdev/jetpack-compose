@@ -10,9 +10,30 @@ class FoodViewModel : ViewModel() {
     private val _uiState = MutableStateFlow(
         FoodUIState(
             foods = listOf(
-                Food(1, "Pizza", 1, "", false),
-                Food(2, "Tacos", 1, "", false),
-                Food(3, "Hamburger", 1, "", false)
+                Food(
+                    1,
+                    "Pizza",
+                    description = "An example text...",
+                    1,
+                    "https://images.pexels.com/photos/31596394/pexels-photo-31596394.jpeg?_gl=1*9hocsg*_ga*MTMwMTQ0MjI5NC4xNzc4NDI0Mjg0*_ga_8JE65Q40S6*czE3Nzg0MjQyODMkbzEkZzEkdDE3Nzg0MjQyOTMkajUwJGwwJGgw",
+                    false,
+                ),
+                Food(
+                    2,
+                    "Tacos",
+                    description = "An example text...",
+                    1,
+                    "https://images.pexels.com/photos/8448165/pexels-photo-8448165.jpeg?_gl=1*7zun64*_ga*MTMwMTQ0MjI5NC4xNzc4NDI0Mjg0*_ga_8JE65Q40S6*czE3Nzg0MjQyODMkbzEkZzEkdDE3Nzg0MjQ5MDkkajI3JGwwJGgw",
+                    false
+                ),
+                Food(
+                    3,
+                    "Hamburger",
+                    description = "An example text...",
+                    1,
+                    "https://images.pexels.com/photos/1639562/pexels-photo-1639562.jpeg?_gl=1*1xlbe2w*_ga*MTMwMTQ0MjI5NC4xNzc4NDI0Mjg0*_ga_8JE65Q40S6*czE3Nzg0MjQyODMkbzEkZzEkdDE3Nzg0MjQzNTQkajUxJGwwJGgw",
+                    false
+                )
             )
         )
     )
