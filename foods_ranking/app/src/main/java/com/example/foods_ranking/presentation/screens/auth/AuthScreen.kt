@@ -5,20 +5,31 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.text.input.rememberTextFieldState
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.foods_ranking.presentation.viewmodel.auth.AuthViewModel
 
 @Composable
 fun AuthScreen() {
+
+    val authViewModel: AuthViewModel = viewModel()
+
+    val authUIState by authViewModel.authUIState.collectAsState()
 
     Scaffold { innerPadding ->
         Column(
@@ -26,10 +37,14 @@ fun AuthScreen() {
                 .fillMaxSize()
                 .padding(innerPadding),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(36.dp)
+            verticalArrangement = Arrangement.Center
         ) {
             AuthHeader()
-            AuthForm()
+            AuthForm(
+                onLogin = { email, password ->
+                    authViewModel.login(email = email, password = password)
+                }
+            )
         }
     }
 }
@@ -37,7 +52,7 @@ fun AuthScreen() {
 @Composable
 fun AuthHeader() {
     Column(
-        modifier = Modifier.padding(top = 24.dp),
+        modifier = Modifier.padding(bottom = 32.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         Text(
@@ -46,16 +61,22 @@ fun AuthHeader() {
             fontWeight = FontWeight.Bold
         )
         Text(
-            text = "Welcome, Sing in to continue",
+            text = "Welcome, Sign in to continue.",
             style = MaterialTheme.typography.titleMedium
         )
     }
 }
 
 @Composable
-fun AuthForm() {
-    val emailState = rememberTextFieldState()
-    val passwordState = rememberTextFieldState()
+fun AuthForm(
+    onLogin: (email: String, password: String) -> Unit
+) {
+    var emailState by remember {
+        mutableStateOf("")
+    }
+    var passwordState by remember {
+        mutableStateOf("")
+    }
 
     Column(
         modifier = Modifier
@@ -65,23 +86,33 @@ fun AuthForm() {
         horizontalAlignment = Alignment.End
     ) {
         OutlinedTextField(
-            state = emailState,
+            value = emailState,
+            onValueChange = {
+                emailState = it
+            },
             label = { Text(text = "Write your email") },
             modifier = Modifier
                 .fillMaxWidth()
         )
         OutlinedTextField(
-            state = passwordState,
+            value = passwordState,
+            onValueChange = {
+                passwordState = it
+            },
             label = { Text(text = "Write your password") },
+            visualTransformation =
+                PasswordVisualTransformation(),
             modifier = Modifier
-                .fillMaxWidth()
+                .fillMaxWidth(),
         )
         Button(
             modifier = Modifier.fillMaxWidth(0.4f),
-            onClick = {}
+            onClick = {
+                onLogin(emailState, passwordState)
+            }
         ) {
             Text(
-                text = "Login",
+                text = "Sign in",
                 style = MaterialTheme.typography.titleMedium
             )
         }
