@@ -1,18 +1,26 @@
 package com.example.foods_ranking.presentation.components
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.material3.Card
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
@@ -25,8 +33,6 @@ fun FoodCard(
     liked: Boolean,
     onLikeClicked: () -> Unit,
 ) {
-    val buttonText = if (liked) "Unlike" else "Like"
-
     Card(
         modifier = modifier
     ) {
@@ -37,8 +43,14 @@ fun FoodCard(
                 model = food.imageUrl,
                 contentDescription = food.name,
                 modifier = Modifier
-                    .fillMaxSize()
-                    .clip(RoundedCornerShape(12.dp)),
+                    .fillMaxWidth()
+                    .height(240.dp)
+                    .clip(
+                        RoundedCornerShape(
+                            topStart = 16.dp,
+                            topEnd = 16.dp
+                        )
+                    ),
                 contentScale = ContentScale.Crop
             )
             Row(
@@ -54,18 +66,37 @@ fun FoodCard(
                         text = food.description,
                         style = MaterialTheme.typography.bodyMedium
                     )
+                }
+                Row(
+                    modifier = Modifier
+                        .clip(RoundedCornerShape(16.dp))
+                        .clickable(
+                            onClick = onLikeClicked
+                        )
+                        .padding(12.dp),
+                    horizontalArrangement = Arrangement.spacedBy(2.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Icon(
+                        imageVector =
+                            if (liked)
+                                Icons.Filled.Favorite
+                            else
+                                Icons.Outlined.FavoriteBorder,
+                        contentDescription = "Like",
+                        modifier = Modifier.size(24.dp),
+                        tint =
+                            if (liked)
+                                Color.Red
+                            else
+                                MaterialTheme.colorScheme.onSurface
+                    )
                     Text(
-                        text = "${food.numberOfLikes} likes",
-                        style = MaterialTheme.typography.bodySmall
+                        text = "${food.numberOfLikes}",
+                        style = MaterialTheme.typography.bodyMedium
                     )
                 }
-                Button(
-                    onClick = onLikeClicked
-                ) {
-                    Text(buttonText)
-                }
             }
-
         }
     }
 }
