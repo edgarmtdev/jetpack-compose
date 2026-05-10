@@ -8,7 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
-import com.example.foods_ranking.presentation.screens.FoodScreen
+import com.example.foods_ranking.presentation.screens.food.FoodScreen
 import com.example.foods_ranking.ui.theme.Foods_RankingTheme
 
 class MainActivity : ComponentActivity() {

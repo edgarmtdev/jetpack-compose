@@ -1,4 +1,4 @@
-package com.example.foods_ranking.presentation.viewmodel
+package com.example.foods_ranking.presentation.viewmodel.food
 
 import androidx.lifecycle.ViewModel
 import com.example.foods_ranking.domain.model.Food

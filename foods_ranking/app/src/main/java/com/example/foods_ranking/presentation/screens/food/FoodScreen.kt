@@ -1,4 +1,4 @@
-package com.example.foods_ranking.presentation.screens
+package com.example.foods_ranking.presentation.screens.food
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -10,7 +10,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.foods_ranking.presentation.components.FoodCard
-import com.example.foods_ranking.presentation.viewmodel.FoodViewModel
+import com.example.foods_ranking.presentation.viewmodel.food.FoodViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 
 @Composable

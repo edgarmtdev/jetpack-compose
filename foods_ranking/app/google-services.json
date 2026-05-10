@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "828200280385",
+    "project_id": "food-rank-f6252",
+    "storage_bucket": "food-rank-f6252.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:828200280385:android:fb1bcdf3fbab3009b201c0",
+        "android_client_info": {
+          "package_name": "com.example.foods_ranking"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3qgT4Lt7ySZsK9Moa-F-wOCE8ElVAnXI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
