@@ -1,4 +1,6 @@
 package com.example.foods_ranking.presentation.screens.auth
 
-class AuthScreen {
-}
+import androidx.compose.runtime.Composable
+
+@Composable
+fun AuthScreen() {}
