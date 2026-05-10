@@ -4,11 +4,11 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.ui.Modifier
-import com.example.foods_ranking.presentation.screens.food.FoodScreen
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.foods_ranking.presentation.navigation.AppNavigation
+import com.example.foods_ranking.presentation.viewmodel.auth.AuthViewModel
 import com.example.foods_ranking.ui.theme.Foods_RankingTheme
 
 class MainActivity : ComponentActivity() {
@@ -16,10 +16,13 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
+            val authViewModel: AuthViewModel = viewModel()
+            val authState by authViewModel.authUIState.collectAsState()
+
             Foods_RankingTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Modifier.padding(innerPadding).FoodScreen()
-                }
+                AppNavigation(
+                    authState = authState
+                )
             }
         }
     }

@@ -14,13 +14,12 @@ import com.example.foods_ranking.presentation.viewmodel.food.FoodViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 
 @Composable
-fun Modifier.FoodScreen(
+fun FoodScreen(
     viewModel: FoodViewModel = viewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
 
     LazyColumn(
-        modifier = this
     ) {
         items(
             uiState.foods,

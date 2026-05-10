@@ -10,5 +10,5 @@ class AuthViewModel: ViewModel() {
         AuthUIState.Loading
     )
 
-    val uiState = _authUIState.asStateFlow()
+    val authUIState = _authUIState.asStateFlow()
 }
