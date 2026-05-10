@@ -1,6 +1,6 @@
 # FoodRank
 
-A modern Android app built with Jetpack Compose as part of my Android learning journey.
+A modern Android app built with Jetpack Compose.
 
 This project focuses on:
 - MVVM architecture
