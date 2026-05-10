@@ -34,7 +34,7 @@ class FoodViewModel : ViewModel() {
                     "https://images.pexels.com/photos/1639562/pexels-photo-1639562.jpeg?_gl=1*1xlbe2w*_ga*MTMwMTQ0MjI5NC4xNzc4NDI0Mjg0*_ga_8JE65Q40S6*czE3Nzg0MjQyODMkbzEkZzEkdDE3Nzg0MjQzNTQkajUxJGwwJGgw",
                     false
                 )
-            )
+            ),
         )
     )
 

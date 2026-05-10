@@ -22,14 +22,16 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.foods_ranking.presentation.viewmodel.auth.AuthUIState
 import com.example.foods_ranking.presentation.viewmodel.auth.AuthViewModel
 
 @Composable
 fun AuthScreen() {
 
     val authViewModel: AuthViewModel = viewModel()
-
     val authUIState by authViewModel.authUIState.collectAsState()
+
+    val isLoading = authUIState is AuthUIState.Loading
 
     Scaffold { innerPadding ->
         Column(
@@ -43,7 +45,8 @@ fun AuthScreen() {
             AuthForm(
                 onLogin = { email, password ->
                     authViewModel.login(email = email, password = password)
-                }
+                },
+                loading = isLoading
             )
         }
     }
@@ -61,7 +64,7 @@ fun AuthHeader() {
             fontWeight = FontWeight.Bold
         )
         Text(
-            text = "Welcome, Sign in to continue.",
+            text = "Welcome, sign in to continue.",
             style = MaterialTheme.typography.titleMedium
         )
     }
@@ -69,7 +72,8 @@ fun AuthHeader() {
 
 @Composable
 fun AuthForm(
-    onLogin: (email: String, password: String) -> Unit
+    onLogin: (String, String) -> Unit,
+    loading: Boolean
 ) {
     var emailState by remember {
         mutableStateOf("")
@@ -112,7 +116,7 @@ fun AuthForm(
             }
         ) {
             Text(
-                text = "Sign in",
+                text = if (loading) "Loading..." else "Sign in",
                 style = MaterialTheme.typography.titleMedium
             )
         }
