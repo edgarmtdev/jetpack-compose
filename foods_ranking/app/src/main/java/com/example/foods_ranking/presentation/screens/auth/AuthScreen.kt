@@ -21,15 +21,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.foods_ranking.presentation.viewmodel.auth.AuthUIState
 import com.example.foods_ranking.presentation.viewmodel.auth.AuthViewModel
 
 @Composable
-fun AuthScreen() {
-
-    val authViewModel: AuthViewModel = viewModel()
-    val authUIState by authViewModel.authUIState.collectAsState()
+fun AuthScreen(
+    authViewModel: AuthViewModel,
+    authUIState: AuthUIState
+) {
 
     val isLoading = authUIState is AuthUIState.Loading
 

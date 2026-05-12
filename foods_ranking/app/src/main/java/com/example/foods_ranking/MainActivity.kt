@@ -21,7 +21,8 @@ class MainActivity : ComponentActivity() {
 
             Foods_RankingTheme {
                 AppNavigation(
-                    authState = authState
+                    authViewModel = authViewModel,
+                    authUIState = authState
                 )
             }
         }

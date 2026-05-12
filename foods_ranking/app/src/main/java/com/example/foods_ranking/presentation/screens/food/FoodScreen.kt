@@ -18,10 +18,10 @@ import com.example.foods_ranking.presentation.viewmodel.auth.AuthViewModel
 
 @Composable
 fun FoodScreen(
-    viewModel: FoodViewModel = viewModel()
+    viewModel: FoodViewModel = viewModel(),
+    authViewModel: AuthViewModel,
 ) {
     val uiState by viewModel.uiState.collectAsState()
-    val authViewModel: AuthViewModel = viewModel()
 
     Scaffold(
         topBar = {
